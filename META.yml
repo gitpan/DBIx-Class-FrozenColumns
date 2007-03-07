@@ -1,0 +1,28 @@
+---
+name: DBIx-Class-FrozenColumns
+version: 0.01
+author:
+  - 'Pronin Oleg <syber@cpan.org>'
+abstract: Store virtual columns inside another column.
+license: perl
+resources:
+  license: http://dev.perl.org/licenses/
+requires:
+  DBIx::Class: 0.07003
+  Storable: 2.15
+build_requires:
+  DBD::SQLite: 1.11
+provides:
+  DBIx::Class::FrozenColumns:
+    file: lib/DBIx/Class/FrozenColumns.pm
+    version: 0.01
+  DBIx::Class::FrozenColumns::Base:
+    file: lib/DBIx/Class/FrozenColumns.pm
+  DBIx::Class::FrozenColumns::Dumped:
+    file: lib/DBIx/Class/FrozenColumns.pm
+  DBIx::Class::FrozenColumns::Frozen:
+    file: lib/DBIx/Class/FrozenColumns.pm
+generated_by: Module::Build version 0.2806
+meta-spec:
+  url: http://module-build.sourceforge.net/META-spec-v1.2.html
+  version: 1.2
