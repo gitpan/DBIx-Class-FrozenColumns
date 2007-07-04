@@ -4,7 +4,7 @@ use base qw/DBIx::Class/;
 use strict;
 use warnings;
 
-our $VERSION = 0.01;
+our $VERSION = 0.02;
 
 __PACKAGE__->mk_classdata('_frozen_columns' => {});
 __PACKAGE__->mk_classdata('_dirty_frozen_columns');
@@ -60,7 +60,10 @@ needed to build reverse relationship).
 Module handles its own dirty column management and will not update the parent
 field unless any columns is changed.
 
-Note: The component needs to be loaded before Core.
+Note: The component needs to be loaded before Core and plugin 'Ordered'.
+If you get an error like 'no such column: <frozencolumn>' while updating a row
+then try to move this module more closer to the start of the load_components
+list.
 
 Also note that frozen column IS NOT a real column of your result class.
 This impose some restrictions on use of this columns such as searching, adding

@@ -11,6 +11,7 @@ t/FrozenTest-Schema-1-SQLite.sql
 t/lib/FrozenTest.pm
 t/lib/FrozenTest/Schema.pm
 t/lib/FrozenTest/Schema/Source.pm
+t/var/FrozenTest.db
 Makefile.PL
 README
 META.yml
