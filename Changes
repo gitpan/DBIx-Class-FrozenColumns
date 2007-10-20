@@ -1,3 +1,6 @@
+0.03    2007-10-20
+        - replace mk_classdata with mk_group_accessors
+
 0.02    2007-07-03
 	- POD changes because of DBIx::Class 0.08x
 

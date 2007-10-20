@@ -4,10 +4,10 @@ use base qw/DBIx::Class/;
 use strict;
 use warnings;
 
-our $VERSION = 0.02;
+our $VERSION = 0.03;
 
-__PACKAGE__->mk_classdata('_frozen_columns' => {});
-__PACKAGE__->mk_classdata('_dirty_frozen_columns');
+__PACKAGE__->mk_group_accessors(inherited => qw/_frozen_columns _dirty_frozen_columns/);
+__PACKAGE__->_frozen_columns({});
 
 =head1 NAME
 

@@ -1,6 +1,6 @@
 ---
 name: DBIx-Class-FrozenColumns
-version: 0.02
+version: 0.03
 author:
   - 'Pronin Oleg <syber@cpan.org>'
 abstract: Store virtual columns inside another column.
@@ -15,7 +15,7 @@ build_requires:
 provides:
   DBIx::Class::FrozenColumns:
     file: lib/DBIx/Class/FrozenColumns.pm
-    version: 0.02
+    version: 0.03
   DBIx::Class::FrozenColumns::Base:
     file: lib/DBIx/Class/FrozenColumns.pm
   DBIx::Class::FrozenColumns::Dumped:
