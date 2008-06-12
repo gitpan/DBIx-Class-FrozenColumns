@@ -4,7 +4,7 @@ use base qw/DBIx::Class/;
 use strict;
 use warnings;
 
-our $VERSION = 0.03;
+our $VERSION = 0.04;
 
 __PACKAGE__->mk_group_accessors(inherited => qw/_frozen_columns _dirty_frozen_columns/);
 __PACKAGE__->_frozen_columns({});
@@ -148,6 +148,26 @@ sub add_dumped_columns {
         columns     => [@_],
     });
 }
+
+=head2 frozen_columns
+
+Returns hash of frozen columns where keys are the names of fcolumns and values 
+are hashes with the following properties:
+
+'type' - type of fcolumn (frozen or dumped or some custom).
+'column' - parent column where fcolumn is stored.
+
+=cut
+
+sub frozen_columns {$_[0]->_frozen_columns}
+
+=head2 frozen_columns_list
+
+Returns list of names of all frozen columns registered with the result source.
+
+=cut
+
+sub frozen_columns_list {keys %{$_[0]->_frozen_columns}}
 
 =head1 EXTENDED METHODS
 

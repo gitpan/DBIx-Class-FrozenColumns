@@ -80,6 +80,17 @@ METHODS
   add_dumped_columns ($data_column, @columns)
     Same as "add_frozen_columns" but uses Data::Dumper mechanism.
 
+  frozen_columns
+    Returns hash of frozen columns where keys are the names of fcolumns and
+    values are hashes with the following properties:
+
+    'type' - type of fcolumn (frozen or dumped or some custom). 'column' -
+    parent column where fcolumn is stored.
+
+  frozen_columns_list
+    Returns list of names of all frozen columns registered with the result
+    source.
+
 EXTENDED METHODS
   new
     Accepts initial values for frozen columns.
