@@ -4,7 +4,7 @@ use base qw/DBIx::Class/;
 use strict;
 use warnings;
 
-our $VERSION = 0.04;
+our $VERSION = 0.05;
 
 __PACKAGE__->mk_group_accessors(inherited => qw/_frozen_columns _dirty_frozen_columns/);
 __PACKAGE__->_frozen_columns({});

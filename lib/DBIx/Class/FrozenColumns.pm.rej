@@ -1,0 +1,22 @@
+***************
+*** 6,13 ****
+  
+  our $VERSION = 0.02;
+  
+- __PACKAGE__->mk_classdata('_frozen_columns' => {});
+- __PACKAGE__->mk_classdata('_dirty_frozen_columns');
+  
+  =head1 NAME
+  
+--- 6,16 ----
+  
+  our $VERSION = 0.02;
+  
++ __PACKAGE__->mk_group_accessors(inherited => qw/
++     _type_of_data_column
++     _data_column_for
++     _dirty_frozen_columns
++ /);
+  
+  =head1 NAME
+  
