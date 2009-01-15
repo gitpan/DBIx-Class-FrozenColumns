@@ -4,7 +4,7 @@ use base qw/DBIx::Class/;
 use strict;
 use warnings;
 
-our $VERSION = 0.06;
+our $VERSION = 0.07;
 
 __PACKAGE__->mk_group_accessors(inherited => qw/_frozen_columns _dirty_frozen_columns/);
 __PACKAGE__->_frozen_columns({});
@@ -96,6 +96,10 @@ See below for more information about L</Custom frozen class>.
 
 Same as L</add_frozen_columns> but uses Data::Dumper mechanism.
 
+=head2 add_json_columns ($data_column, @columns)
+
+Same as L</add_frozen_columns> but uses JSON::XS mechanism.
+
 =cut
 
 sub add_frozen_columns {
@@ -144,6 +148,14 @@ sub add_frozen_columns {
 sub add_dumped_columns {
     shift->add_frozen_columns({
         type        => 'DBIx::Class::FrozenColumns::Dumped',
+        data_column => shift,
+        columns     => [@_],
+    });
+}
+
+sub add_json_columns {
+    shift->add_frozen_columns({
+        type        => 'DBIx::Class::FrozenColumns::JSON',
         data_column => shift,
         columns     => [@_],
     });
@@ -434,6 +446,22 @@ sub recover {
     my $data = defined $$dataref ? eval "$$dataref" || {} : {};
     bless ($data, ref $this || $this);
 }
+
+
+package DBIx::Class::FrozenColumns::JSON;
+use base qw/DBIx::Class::FrozenColumns::Base/;
+
+use strict;
+use JSON::XS;
+my $json = JSON::XS->new; #utf8 will be handled automatically (<dbtype>_enable_utf8 required)
+
+sub stringify {ref $_[0] ? $json->encode({%{$_[0]}}) : undef}
+sub recover {
+    my ($this, $dataref) = @_;
+    my $data = defined $$dataref ? eval {$json->decode($$dataref)} || {} : {};
+    bless $data, ref $this || $this;
+}
+
 
 =head1 CAVEATS
 
