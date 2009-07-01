@@ -4,7 +4,7 @@ use base qw/DBIx::Class/;
 use strict;
 use warnings;
 
-our $VERSION = 0.07;
+our $VERSION = 0.08;
 
 __PACKAGE__->mk_group_accessors(inherited => qw/_frozen_columns _dirty_frozen_columns/);
 __PACKAGE__->_frozen_columns({});
@@ -410,6 +410,7 @@ package DBIx::Class::FrozenColumns::Base;
 use strict;
 use overload '.'      => sub {$_[0]->stringify},
              'ne'     => sub{1},
+             'eq'     => sub{undef},
              fallback => 1;
 
 package DBIx::Class::FrozenColumns::Frozen;
