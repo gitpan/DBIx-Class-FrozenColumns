@@ -4,7 +4,7 @@ use base qw/DBIx::Class/;
 use strict;
 use warnings;
 
-our $VERSION = 0.08;
+our $VERSION = 0.09;
 
 __PACKAGE__->mk_group_accessors(inherited => qw/_frozen_columns _dirty_frozen_columns/);
 __PACKAGE__->_frozen_columns({});
@@ -353,7 +353,7 @@ sub is_changed {
         return @columns;
     }
 
-    return 1 if $self->next::method(@_) or keys %{$self->_dirty_frozen_columns};
+    return 1 if $self->next::method(@_) or keys %{$self->_dirty_frozen_columns||{}};
 }
 
 =head2 update

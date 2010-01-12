@@ -5,7 +5,7 @@ use Test::More;
 use lib 't/lib';
 use FrozenTest;
 
-plan tests => 25;
+plan tests => 27;
 
 my $schema = FrozenTest->init;
 my $rs     = $schema->resultset('Source');
@@ -22,8 +22,9 @@ foreach my $t (qw/frozen dumped/) {
     $row->$acc("acc_$t");
     is $row->$acc, "acc_$t", "$t: accessor";
 }
-
+ok $row->is_changed;
 $row->update;
+ok !$row->is_changed;
 $row = $rs->find({id => $id});
 $rs->create({
     id       => ++$id,
